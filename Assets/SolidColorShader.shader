@@ -2,6 +2,10 @@
 
 Shader "Unlit/SolidColorShader"
 {
+	Properties
+	{
+		_Color ("Color", Color) = (1, 1, 1, 1)
+	}
 	SubShader
 	{
 		Pass
@@ -11,6 +15,8 @@ Shader "Unlit/SolidColorShader"
 			#pragma fragment frag
 
 			#include "UnityCG.cginc"
+
+			uniform float4 _Color = {1,1,1,1};
 
 			struct vertIn
 			{
@@ -33,7 +39,7 @@ Shader "Unlit/SolidColorShader"
 			// Implementation of the fragment (pixel) shader
 			fixed4 frag(vertOut v) : SV_Target
 			{
-				return float4(0.0f, 0.0f, 0.0f, 1.0f);
+				return _Color;
 			}
 			ENDCG
 		}
